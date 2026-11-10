@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#075b46">
+  <meta name="description" content="Mohamed. Quran — اقرأ واستمع وتدبر القرآن الكريم">
+  <title>Mohamed. Quran | القرآن الكريم</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav-wrap">
+      <a class="brand" href="#home"><span class="brand-mark">۞</span> Mohamed<span class="gold">.</span> Quran</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#quran">المصحف</a><a href="#recitations">التلاوات</a><a href="#adhkar">الأذكار</a><a href="#search">البحث</a>
+      </div>
+      <button class="theme-btn" id="themeToggle" aria-label="تبديل الوضع">☾</button>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-pattern"></div>
+      <p class="eyebrow">نورٌ وطمأنينة</p>
+      <h1>القرآن الكريم</h1>
+      <p class="hero-sub">﴿ وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِلْمُؤْمِنِينَ ﴾</p>
+      <a class="primary-btn" href="#quran">ابدأ القراءة <span>←</span></a>
+    </section>
+
+    <section class="section" id="quran">
+      <div class="section-heading"><span class="eyebrow">المصحف الشريف</span><h2>اقرأ وتدبّر</h2><p>اختر السورة والآية للانتقال إلى موضع القراءة.</p></div>
+      <div class="reader-controls">
+        <label>السورة<select id="surahSelect"><option>جارٍ تحميل السور...</option></select></label>
+        <label>رقم الآية<input id="ayahInput" type="number" min="1" value="1"></label>
+        <button class="primary-btn" id="goAyah">انتقال</button>
+      </div>
+      <div class="surah-heading" id="surahHeading">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <div id="ayahList" class="ayah-list" aria-live="polite"><p class="loading">يتم تحميل آيات القرآن الكريم...</p></div>
+    </section>
+
+    <section class="section alt-section" id="recitations">
+      <div class="section-heading"><span class="eyebrow">استمع بخشوع</span><h2>التلاوات القرآنية</h2><p>اختر القارئ والسورة ثم ابدأ الاستماع.</p></div>
+      <div class="reciter-panel">
+        <label>القارئ<select id="reciterSelect">
+          <option value="ar.abdulbasitmurattal">عبد الباسط عبد الصمد</option>
+          <option value="ar.alafasy" selected>مشاري العفاسي</option>
+          <option value="ar.mahermuaiqly">ماهر المعيقلي</option>
+          <option value="ar.abdurrahmaansudais">عبد الرحمن السديس</option>
+        </select></label>
+        <label>السورة<select id="audioSurahSelect"><option value="1">الفاتحة</option></select></label>
+        <button class="primary-btn" id="playSurah">استمع للسورة</button>
+      </div>
+      <div class="player">
+        <div class="player-info"><span class="player-icon">♫</span><div><strong id="playerTitle">مشغل التلاوات</strong><small id="playerSubtitle">اختر سورة لبدء الاستماع</small></div></div>
+        <audio id="audioPlayer" controls preload="none"></audio>
+        <div class="player-actions"><button id="backAudio" title="رجوع 10 ثوانٍ">↶ 10</button><button id="forwardAudio" title="تقديم 10 ثوانٍ">10 ↷</button></div>
+      </div>
+    </section>
+
+    <section class="section" id="search">
+      <div class="section-heading"><span class="eyebrow">ابحث في كتاب الله</span><h2>البحث في القرآن</h2><p>اكتب كلمة أو جزءاً من آية باللغة العربية.</p></div>
+      <div class="search-box"><input id="searchInput" type="search" placeholder="مثال: إن مع العسر يسرا" aria-label="ابحث في القرآن"><button class="primary-btn" id="searchButton">بحث</button></div>
+      <div id="searchResults" class="search-results"></div>
+    </section>
+
+    <section class="section alt-section" id="adhkar">
+      <div class="section-heading"><span class="eyebrow">حصن المسلم</span><h2>الأذكار والأدعية</h2><p>أذكار مختارة مع عدّاد يساعدك على المتابعة.</p></div>
+      <div class="category-tabs" id="dhikrTabs">
+        <button class="active" data-category="morning">أذكار الصباح</button>
+        <button data-category="evening">أذكار المساء</button>
+        <button data-category="prayer">أذكار الصلاة</button>
+        <button data-category="dua">أدعية قرآنية</button>
+      </div>
+      <div id="dhikrList" class="dhikr-list"></div>
+    </section>
+  </main>
+
+  <button id="bookmarkButton" class="bookmark-float" title="العودة إلى آخر موضع قراءة">↩ <span>متابعة القراءة</span></button>
+  <footer><div class="footer-brand">۞ Mohamed<span class="gold">.</span> Quran</div><p>اللهم اجعل القرآن ربيع قلوبنا ونور صدورنا.</p><small>© <span id="year"></span> Mohamed. Quran — جميع الحقوق محفوظة</small></footer>
+  <script src="script.js"></script>
+</body>
+</html>
